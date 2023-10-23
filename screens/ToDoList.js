@@ -1,6 +1,8 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useState} from 'react';
 import {Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import todoStore from "../stores/ToDoStore";
+import logStore from "../stores/LogStore";
 
 class ToDoItem {
     constructor(text) {
@@ -14,31 +16,32 @@ class ToDoItem {
 }
 
 export default function ToDoList({navigation}) {
-    const [todos, setTodos] = useState([]);
     const [text, setText] = useState('');
-    const addTodo = () => {
-        let newTodos = [...todos];
-        let newItem = new ToDoItem(text);
-        newTodos.push(newItem);
-        setTodos(newTodos);
+
+    const addItem = () => {
+        todoStore.addTodo(text);
         setText('');
+        logStore.addLog([`Task '${text}' has been added`, '#AFEEEE']);
     };
 
     const removeItem = (item) => {
-        let newTodos = [...todos];
-        let index = newTodos.indexOf(item);
-        delete newTodos[index];
-        setTodos(newTodos)
+        todoStore.deleteTodo(item);
+        logStore.addLog([`Task '${item[0]}' has been removed`, '#FA8072']);
+    };
+
+    const completeItem = (item) => {
+        todoStore.markAsCompleted(item);
+        logStore.addLog([`Task '${item[0]}' has been completed`, '#98FB98']);
     };
 
     const getCompletedToDos = () => {
-        const items = [...todos]
-        return items.filter(item => item.isDone)
+        return todoStore.todoList.filter(item => item[1] === true)
     }
 
     const keyExtractor = (index) => {
         return index.toString();
     };
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -51,12 +54,16 @@ export default function ToDoList({navigation}) {
                         onPress={() => navigation.navigate('About')}
                         title='About'
                 />
+                <Button style={styles.button}
+                        onPress={() => navigation.navigate('Log')}
+                        title='Log'
+                />
                 <Text style={styles.header}>ToDoList</Text>
                 <View style={styles.emptyView}></View>
                 <FlatList
-                    data={todos}
+                    data={todoStore.todoList}
                     keyExtractor={(item, index) => keyExtractor(index)} renderItem={({item}) =>
-                    <ToDoLine item={item} onRemove={removeItem}></ToDoLine>}
+                    <ToDoLine item={item} onRemove={removeItem} onCompleted={completeItem}></ToDoLine>}
                 />
                 <TextInput
                     style={styles.textInput}
@@ -65,7 +72,7 @@ export default function ToDoList({navigation}) {
                 </TextInput>
                 <Button
                     title=" ADD "
-                    onPress={() => addTodo()}>
+                    onPress={() => addItem()}>
                 </Button>
                 <View style={styles.emptyView}></View>
                 <Button

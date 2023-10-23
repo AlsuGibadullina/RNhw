@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { observer } from "mobx-react";
 
-const Home = ({ navigation }) => {
+const Home = observer(({ navigation }) => {
+
+
     return (
         <View style={styles.container}>
             <Button style={styles.button}
@@ -15,7 +18,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.header}>Home</Text>
         </View>
     );
-}
+})
 
 const styles = StyleSheet.create({
     container: {
