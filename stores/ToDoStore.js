@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 
-
 class ToDoStore {
     todoList = [];
 
@@ -20,7 +19,7 @@ class ToDoStore {
 
     deleteTodo(todo) {
         const index = this.todoList.indexOf(todo);
-        delete this.todoList[index]
+        delete this.todoList[index];
     }
 }
 

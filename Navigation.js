@@ -1,10 +1,10 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import * as React from 'react';
-import ToDoList from "./screens/ToDoList";
-import {CompletedScreen} from "./screens/ToDoList";
-import Home from "./screens/Home";
-import About from "./screens/About";
-import {Log} from "./screens/Log";
+import ToDoList from "./screens/ToDoScreen";
+import {CompletedScreen} from "./screens/ToDoScreen";
+import Home from "./screens/HomeScreen";
+import About from "./screens/AboutScreen";
+import {Log} from "./screens/LogScreen";
 
 const Stack = createNativeStackNavigator();
 

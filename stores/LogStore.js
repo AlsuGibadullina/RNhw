@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 
-
 class LogStore {
     logList = [];
 
