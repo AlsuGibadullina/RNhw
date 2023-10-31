@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { observer } from 'mobx-react';
 
-import styles from '../styles';
+import styles from '../styles/styles';
 import { ToDoLine } from '../components/ToDoLine';
 import logStore from "../stores/LogStore";
 

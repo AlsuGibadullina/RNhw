@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, SafeAreaView, Text, View } from 'react-native';
 
-import styles from '../styles';
+import styles from '../styles/styles';
 import {ToDoLine} from "../components/ToDoLine";
 
 export const CompletedTasksScreen = ({ route, navigation }) => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { View, Text, Button } from 'react-native';
 
-import styles from '../styles';
+import styles from '../styles/styles';
 
 export const axiosClient = axios.create({
     baseURL: 'http://api.openweathermap.org/data/2.5',

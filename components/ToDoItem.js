@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Text, TouchableOpacity, View } from 'react-native';
 
-import styles from '../styles';
+import styles from '../styles/styles';
 
 export const ToDoItem = (props) => {
     const [isVisible, setIsVisible] = useState(true);
